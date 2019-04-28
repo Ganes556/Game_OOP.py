@@ -1,18 +1,18 @@
 from time import sleep
 import random
 import sys
-import time
+
 def mengetik(s,time):
     for c in s + "\n":
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(random.random() * time))
-decor = "="*len(kalimat)
-print(decor)
+        sleep(random.random() * time)
+time = 0.1
 kalimat = "^_- Ini adalah game attack By Ganes semoga terhibur -_^"
-print(decor)
+print("="*len(kalimat))
+mengetik(kalimat,time)
+print("="*len(kalimat))
 
-mengetik(kalimat,0.1)
 sleep(1)
 class Hero:
     def __init__(self,inputName,inputHealth,inputPower,inputArmor):
@@ -39,34 +39,47 @@ class Hero:
 kenji = Hero("kenji",500,100,50)
 zymeth = Hero("zymeth",300,200,25)
 print("pilih karakter : ")
-print("1) kenji : " + str(kenji.__dict__)+"" )
-print("2) zymeth : "+ str(zymeth.__dict__) +"")
+status = {"kenji":kenji.__dict__,"zymeth":zymeth.__dict__}
+print("1). Kenji :")
+for key,value in status["kenji"].items():
+    if value != status["kenji"]["name"]:
+        print("\t[*]",key,value )
+print("2). zymeth :")
+for key,value in status["zymeth"].items():
+    if value != status["zymeth"]["name"]:
+         print("\t[*]",key,value )
 pilih = input("masukan pilihan >> ")
 sleep(2)
 def client(pilih):
     global kenji , zymeth
-    kalimat = "serang..."
+    kalimat = "Serang!........"
+    time = 0.4
     if pilih == "1" or pilih == "01":
         serangan = input("serang sekarang ?(Tekan enter) ")
-        mengetik(kalimat,0.3)
+        mengetik(kalimat,time)
         kenji.serang(zymeth)
+        print("\n")
         while True:
             if zymeth.health <= 0:
                 print("zymeth mati")
                 break
-            serangan = input("serang lagi ?(Tekan enter) ")
-            mengetik(kalimat,0.3)
+            serangan = input("serang lagi ?(Tekan enter)")
+            mengetik(kalimat,time)
+            print("\n")
             kenji.serang(zymeth)
+       
         
     elif pilih == "2" or pilih == "02":
         serangan = input("serang sekarang ?(Tekan enter) ")
-        mengetik(kalimat,0.3)
+        mengetik(kalimat,time)
+        print("\n")
         zymeth.serang(kenji)
         while True:
             if kenji.health <= 0:
                 print("kenji mati")
                 break
             serangan = input("serang lagi ?(Tekan enter) ")
-            mengetik(kalimat,0.3)
+            mengetik(kalimat,time)
+            print("\n")
             zymeth.serang(kenji)
 client(pilih)
